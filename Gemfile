@@ -36,6 +36,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
+# CarrierWave for file uploads
+gem 'carrierwave'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -53,5 +56,11 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'annotate'
   gem 'dotenv-rails'
+end
+
+group :production do
+  # gem below required for Heroku deployment
+  gem 'rails_12factor'
+  gem 'cloudinary'
 end
 
