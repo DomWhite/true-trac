@@ -14,4 +14,6 @@ class User < ActiveRecord::Base
     end
   end
 
+  has_many :comments, dependent: :delete_all
+
 end
