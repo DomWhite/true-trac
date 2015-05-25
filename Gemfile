@@ -40,6 +40,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
+# Faye Websocket
+gem 'faye-rails', '~> 2.0'
+gem 'thin'
+
 # CarrierWave for file uploads
 gem 'carrierwave'
 
