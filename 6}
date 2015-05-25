@@ -1,2 +1,0 @@
-      invoke  active_record
-      create    db/migrate/20150525135922_add_longitude_to_markers.rb

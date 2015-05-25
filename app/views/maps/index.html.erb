@@ -9,6 +9,7 @@ var options = {
   maximumAge: 0
 };
  var crd; 
+ var map;
 
 function success(pos) {
   crd = pos.coords;
@@ -17,7 +18,28 @@ function success(pos) {
   console.log('Longitude: ' + crd.longitude);
   console.log('More or less ' + crd.accuracy + ' meters.');
   initialize();
-};
+    $.ajax({
+    url: "/api/markers",
+    method: "get"
+  }).done(function(data) {
+
+    $.each(data, function(index, value) {
+      console.log(index);
+      console.log(value);
+      var thisLatLng = new google.maps.LatLng(value.lat, value.lng);
+
+      // plot new checkpoint on the map
+      newMarker = new google.maps.Marker({
+      position: thisLatLng,
+            optimized: false,
+      map: map,
+      title: value.title,
+      id: index
+    });
+    });
+  });
+};  
+
 
 function error(err) {
   console.warn('ERROR(' + err.code + '): ' + err.message);
@@ -32,7 +54,7 @@ navigator.geolocation.getCurrentPosition(success, error, options);
     mapTypeId: google.maps.MapTypeId.SATELLITE
   };
 
-  var map = new google.maps.Map(document.getElementById('map-canvas'),
+  map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 }
 
