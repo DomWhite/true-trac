@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def create
+    #render text: request.env['omniauth.auth'].to_json
     user = User.from_omniauth(request.env['omniauth.auth'])
     cookies[:user_id] = user.id
     flash[:success] = "Hello, #{user.name}!"

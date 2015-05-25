@@ -8,4 +8,6 @@ class Comment < ActiveRecord::Base
       end
     end
   end
+
+  belongs_to :user
 end
