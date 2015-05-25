@@ -1,0 +1,44 @@
+<h1>Maps</h1>
+
+<div id="map-canvas" style= "height:400px"></div>
+
+<script>
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+ var crd; 
+
+function success(pos) {
+  crd = pos.coords;
+  console.log('Your current position is:');
+  console.log('Latitude : ' + crd.latitude);
+  console.log('Longitude: ' + crd.longitude);
+  console.log('More or less ' + crd.accuracy + ' meters.');
+  initialize();
+};
+
+function error(err) {
+  console.warn('ERROR(' + err.code + '): ' + err.message);
+};
+
+navigator.geolocation.getCurrentPosition(success, error, options);
+
+  function initialize() {
+  var mapOptions = {
+    zoom: 8,
+    center: new google.maps.LatLng(crd.latitude, crd.longitude),
+    mapTypeId: google.maps.MapTypeId.SATELLITE
+  };
+
+  var map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+}
+
+</script>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key="></script>
+
+  <script></script>

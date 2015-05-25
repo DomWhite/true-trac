@@ -6,8 +6,14 @@
 </head>
 <body>
   <h1>Welcome to TrueTrac</h1>
+<% if !logged_in? %>
   <p>Sign in with...</p>
   <%= link_to 'twitter', '/auth/twitter', class: 'social twitter' %>
   <%= link_to 'facebook', '/auth/facebook', class: 'social facebook' %>
+<br>
+ <% end %> 
+  <%= link_to 'Chat Room', '/chat', class: 'social' %>
+<br>
+  <%= link_to 'Map', '/map', class: 'social' %>
 </body>
 </html>

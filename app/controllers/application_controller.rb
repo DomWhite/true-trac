@@ -6,7 +6,11 @@ class ApplicationController < ActionController::Base
 def current_user
   @current_user ||= User.find_by(id: cookies[:user_id]) if cookies[:user_id]
 end
+
+def logged_in?
+  !!current_user
+end
  
-helper_method :current_user
+helper_method :current_user, :logged_in?
   
 end

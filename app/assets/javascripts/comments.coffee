@@ -5,7 +5,7 @@ jQuery ->
    client.unsubscribe '/comments'
   catch
    console?.log "Can't unsubscribe." # print a message only if console is defined
-  end
+
   client.subscribe '/comments', (payload) ->
     $('#comments').find('.media-list').prepend(payload.message) if payload.message
 
