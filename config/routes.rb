@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :pages, :users
 
-  # get '/' => 'pages#index', :as => :root
+  get '/' => 'pages#index', :as => :root
 
   get '/about' => 'pages#about'
 
@@ -12,6 +12,6 @@ Rails.application.routes.draw do
   get '/sign_out', to: 'sessions#destroy', as: :sign_out
 
   resources :comments, only: [:new, :create]
-  root to: 'comments#new'
+  get '/comments' => 'comments#new'
 
 end
