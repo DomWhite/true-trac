@@ -5,6 +5,27 @@
   <title>TrueTrac</title>
 </head>
 <body>
+
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">Logo</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="components.html">Components</a></li>
+        <li><a href="javascript.html">Javascript</a></li>
+        <li><a href="mobile.html">Mobile</a></li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="components.html">Components</a></li>
+        <li><a href="javascript.html">Javascript</a></li>
+        <li><a href="mobile.html">Mobile</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
   <h1>Welcome to TrueTrac</h1>
 <% if !logged_in? %>
   <p>Sign in with...</p>
@@ -15,5 +36,11 @@
   <%= link_to 'Chat Room', '/chat', class: 'social' %>
 <br>
   <%= link_to 'Map', '/map', class: 'social' %>
+
+  <script>
+  $( document ).ready(function(){
+    $(".button-collapse").sideNav();
+  });
+  </script>
 </body>
 </html>

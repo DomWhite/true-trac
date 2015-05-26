@@ -18,6 +18,11 @@ function success(pos) {
   console.log('Longitude: ' + crd.longitude);
   console.log('More or less ' + crd.accuracy + ' meters.');
   initialize();
+  google.maps.event.addListener(map, 'click', function( event ){
+    console.log(event.latLng.lat());
+    console.log(event.latLng.lng());
+  alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() ); 
+});
     $.ajax({
     url: "/api/markers",
     method: "get"
