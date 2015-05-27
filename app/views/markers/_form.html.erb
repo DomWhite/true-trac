@@ -1,0 +1,56 @@
+<div class="row">
+<%= form_for @marker, :html => {:class => "col s12"} do |f| %> 
+<div class="row">
+  <div class= "input-field col s12 m6">
+    <%= f.text_field :title%>
+    <label for="title">Title</label>
+  </div>
+</div>
+
+<div class="row">
+  <div class= "input-field col s12">
+    <%= f.text_field :description%>
+    <label for="description">Description</label>
+  </div>
+</div>
+
+<div class="row">
+  <div class="input-field col s6">
+    <%= f.text_field :lat, id: 'lat', placeholder: ""%>
+    <label for="latitude">Latitude</label>
+  </div>
+
+  <div class="input-field col s6">
+    <%= f.text_field :lng, id: 'lng', placeholder: ""%>
+    <label for="longitude">Longitude</label>
+  </div>
+</div>
+
+<div class="col s12 m3">
+  <%= f.radio_button(:category_id, "1") %>
+  <%= f.label :category_id, 'Camping', :value => '1' %>
+</div>
+<div class="col s12 m3">
+  <%= f.radio_button(:category_id, "2") %>
+  <%= f.label :category_id, 'Hiking', :value => '2' %> 
+</div>
+<div class="col s12 m3">
+  <%= f.radio_button(:category_id, "3") %>
+  <%= f.label :category_id, '4WD', :value => '3' %>
+</div>
+<div class="col s12 m3">
+  <%= f.radio_button(:category_id, "4") %>
+  <%= f.label :category_id, 'Hunting', :value => '4' %>
+</div>
+<%= f.hidden_field :user_id, :value => current_user.id %>
+<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="mdi-content-send right"></i>
+</button>
+ <% end %>
+</div>
+
+
+
+
+
+
