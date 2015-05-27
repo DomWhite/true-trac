@@ -16,4 +16,5 @@
 //= require jquery.turbolinks
 //= require faye
 //= require comments
+//= require geoloc
 //= require_tree .
