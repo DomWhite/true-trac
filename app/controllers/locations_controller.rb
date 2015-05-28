@@ -14,19 +14,24 @@ class LocationsController < ApplicationController
   end
 
   def show
+    arr = []
     (1..user_count).each do |num|
-      record = Location.find(user_id:num).last
+      next if (num == current_user.id)
+      record = Location.where(user_id:num).last
+      arr << record
     end 
 
-    location = Location.all
-    render :json => location.to_json
+    render :json => arr.to_json
+
+    # location = Location.all
+    # render :json => location.to_json
   end  
 
   def location_params
     params_require(:location).permit(:user_id, :lat, :lng)
   end
 
-  def self.user_count
+  def user_count
       all = Location.all
       @count = all.select(:user_id).uniq.count
   end

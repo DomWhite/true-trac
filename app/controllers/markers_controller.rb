@@ -5,7 +5,11 @@ class MarkersController < ApplicationController
   end
 
   def new
-    @marker = Marker.new
+    if !logged_in? 
+      redirect_to '/'
+    else
+      @marker = Marker.new
+    end
   end
 
   def create

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get '/' => 'pages#index', :as => :root
 
-  get '/about' => 'pages#about'
+  # get '/about' => 'pages#about'
 
   get '/map' => 'markers#new'
 
@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   post '/locations' => 'locations#create'
 
   get '/api/ammunition' => 'ammunitions#show'
+
+  get '/api/locations' => 'locations#show'
 
   
 
