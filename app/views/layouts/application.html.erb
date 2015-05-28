@@ -13,6 +13,7 @@
     <li class="divider"></li>
     <li class="waves-effect z-depth-3"><%= link_to 'Facebook', '/auth/facebook', class: 'social facebook' %></li>
   </ul>
+<div class="navbar-fixed">
   <nav class="z-depth-3">
     <div class="nav-wrapper teal">
       <a href="/" class="brand-logo">TrueTrac</a>
@@ -42,6 +43,7 @@
       </ul>
     </div>
   </nav>
+</div>
  
   <div class="container">
     <% flash.each do |key, value| %>
@@ -53,11 +55,11 @@
 <main>
     <%= yield %>
 </main>
-        <footer class="page-footer">
+        <footer class="page-footer" style="padding-top:0; margin-top: 0">
           <div class="footer-copyright">
             <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            © 2015 Dominic White
+            <a class="grey-text text-lighten-4 right" href="https://generalassemb.ly/">A General Assembly Project</a>
             </div>
           </div>
         </footer>

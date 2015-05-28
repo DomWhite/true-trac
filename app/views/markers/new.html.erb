@@ -1,13 +1,40 @@
-<div class="container">
-<a id="ping" class="waves-effect waves-light btn">PING LOCATION<i class="mdi-maps-my-location"></i></a>
+<div class="container" id="map-container">
+<!-- <a id="ping" class="waves-effect waves-light btn">PING LOCATION<i class="mdi-maps-my-location"></i></a> -->
   <!-- Dropdown Trigger -->
-  <a class='dropdown-button btn' href='#' data-activates='dropdown2'>AMMUNITION</a>
+<!--   <a class='dropdown-button btn' href='#' data-activates='dropdown2'>AMMUNITION</a> -->
 
   <!-- Dropdown Structure -->
   <ul id='dropdown2' class='dropdown-content'>
   <!-- Populated with ammunition dynamically -->
   </ul>
-<div id="map-canvas" style= "height:400px" class="z-depth-5"></div>
+<div class="row"> 
+  <div id="map-canvas" class= "col s12 l11" style= "height:400px" class="z-depth-5"></div>
+  <div class="row col l1">
+<!--     <div class="col l1">
+    <a class="waves-effect waves-light btn modal-trigger" href="#modalhelp">HELP</a>
+  </div>  --> 
+  <div class="col s12 m3 l2 z-depth-1" id="side-buttons">
+    <a id="help" class="waves-effect waves-light btn modal-trigger z-depth-1" href="#modalhelp">HELP</a><!---->
+    <a id="show" class="waves-effect waves-light btn z-depth-1">SHOW OTHERS</a><!---->
+    <a id="ping" class="waves-effect waves-light btn z-depth-1">PING<i class="mdi-maps-my-location"></i></a><!---->
+  
+
+  <!-- Dropdown Trigger -->
+  <a id="ammo" class='dropdown-button btn' href='#' data-activates='dropdown2'>AMMUNITION</a>
+
+  </div>
+
+  <!-- Modal Structure -->
+  <div id="modalhelp" class="modal teal-text">
+    <div class="modal-content">
+      <h5>Save your favourite places!</h5>
+      <p class= "flow-text">Click anywhere on the map to add the latitude and longitude to the form, add the rest of the details, hit submit and you've saved a marker for everyone to see.</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
+  </div>
 <br>
 
 
@@ -15,7 +42,7 @@
 
 
 </div>
-
+</div>
 <script>
 var options = {
   enableHighAccuracy: true,
@@ -100,6 +127,28 @@ $('#ping').on('click', function(){
   }, 3000);
 });
 
+$('#show').on('click', function(){
+  $.ajax({
+      url: "/api/locations",
+      method: "get"
+    }).done(function(data) {
+
+      // creates a new circle for each checkpoint
+      $.each(data, function(index, value) {
+        var thisLatLng = new google.maps.LatLng(value.lat, value.lng);
+
+        // plot all users last pinged position on map on the map
+        newCheckpointMarker = new google.maps.Marker({
+        position: thisLatLng,
+        optimized: false,
+        icon: "<%= asset_path 'blue-marker.gif' %>",
+        map: map,
+        title: "person",
+        id: index
+      });
+    });
+  });
+});
 $(".draw-circle").on('click', function() {
     var center = new google.maps.LatLng(crd.latitude, crd.longitude);
           var options = {
