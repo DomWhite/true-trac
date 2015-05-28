@@ -8,35 +8,37 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">        
 </head>
 <body>
-  <ul id="dropdown1" class="dropdown-content">
-    <li><%= link_to 'Twitter', '/auth/twitter', class: 'social twitter' %></li>
+  <ul id="dropdown1" class="dropdown-content z-depth-2">
+    <li class="waves-effect z-depth-3"><%= link_to 'Twitter', '/auth/twitter', class: 'social twitter' %></li>
     <li class="divider"></li>
-    <li><%= link_to 'Facebook', '/auth/facebook', class: 'social facebook' %></li>
+    <li class="waves-effect z-depth-3"><%= link_to 'Facebook', '/auth/facebook', class: 'social facebook' %></li>
   </ul>
-  <nav>
-    <div class="nav-wrapper">
-      <a href="/" class="brand-logo">True Trac</a>
+  <nav class="z-depth-3">
+    <div class="nav-wrapper teal">
+      <a href="/" class="brand-logo">TrueTrac</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
       <ul class="right hide-on-med-and-down">
-        <li><%= link_to 'CHAT', '/chat', class: 'social' %></li>
-        <li><%= link_to 'MAP', '/map', class: 'social' %></li>
+        <li class="waves-effect"><%= link_to 'CHAT', '/chat', class: 'social' %><i class="large mdi-communication-chat right"></i></li>
+        <li class="waves-effect"><%= link_to 'MAP', '/map', class: 'social' %><i class="large mdi-action-explore right"></i></li>
         <% if !logged_in? %>
-          <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Sign In<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+          <li class="waves-effect"><a class="dropdown-button " href="#!" data-activates="dropdown1">SIGN IN<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
          <% else %>
-         <li><%= link_to 'SIGN OUT', sign_out_path %></li>
+         <li class="waves-effect"><%= link_to 'SIGN OUT', sign_out_path %></li><i class="large mdi-action-exit-to-app right"></i>
         <% end %> 
 
       </ul>
-      <ul class="side-nav" id="mobile-demo">
-        <li><%= link_to 'MAP', '/map', class: 'social' %></li>
-        <li><%= link_to 'CHAT', '/chat', class: 'social' %></li>
+      <ul class="side-nav teal" id="mobile-demo">
+      <div class= "row">
+        <li class="waves-effect col s12"><%= link_to 'EXPLORE', '/map', class:"white-text" %></li>
+        <li class="waves-effect col s12"><%= link_to 'CHAT', '/chat', class:"white-text"  %></li>
         <% if !logged_in? %>
-          <li style="color: grey">Sign in with:</li>
-          <li><%= link_to 'Twitter', '/auth/twitter', class: 'social twitter' %></li>
-          <li><%= link_to 'Facebook', '/auth/facebook', class: 'social facebook' %></li>
+          <p class= "teal-text white col s12">Sign in with:</p>
+          <li class="waves-effect col s6"><%= link_to 'Twitter', '/auth/twitter', class:"white-text"  %></li>
+          <li class="waves-effect col s6"><%= link_to 'Facebook', '/auth/facebook', class:"white-text"  %></li>
         <% else %> 
-          <li><%= link_to 'SIGN OUT', sign_out_path %></li>
+          <li class="waves-effect col s12"><%= link_to 'SIGN OUT', sign_out_path, class:"white-text" %></li>
         <% end %> 
+        </div>
       </ul>
     </div>
   </nav>
@@ -47,13 +49,19 @@
         <%= value %>
       </div>
     <% end %>
- 
-    <%= yield %>
   </div>
-
-
+<main>
+    <%= yield %>
+</main>
+        <footer class="page-footer">
+          <div class="footer-copyright">
+            <div class="container">
+            © 2014 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
-
 </body>
 </html>

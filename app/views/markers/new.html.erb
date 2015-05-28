@@ -1,7 +1,12 @@
-<span><h1>Map</h1></span>
+<div class="container">
+<a id="ping" class="waves-effect waves-light btn">PING LOCATION<i class="mdi-maps-my-location"></i></a>
+  <!-- Dropdown Trigger -->
+  <a class='dropdown-button btn' href='#' data-activates='dropdown2'>AMMUNITION</a>
 
-<a id="ping" class="waves-effect waves-light btn">PING LOCATION</a>
-
+  <!-- Dropdown Structure -->
+  <ul id='dropdown2' class='dropdown-content'>
+  <!-- Populated with ammunition dynamically -->
+  </ul>
 <div id="map-canvas" style= "height:400px" class="z-depth-5"></div>
 <br>
 
@@ -9,7 +14,7 @@
   <%= render 'form' %>
 
 
-
+</div>
 
 <script>
 var options = {
@@ -42,7 +47,7 @@ function success(pos) {
 
     $.each(data, function(index, value) {
       var thisLatLng = new google.maps.LatLng(value.lat, value.lng);
-      var contentString =  "" + value.title +  " --- " + value.description;
+      var contentString =  "<div class='card-panel blue darken-1'><span class='white-text text-darken-2'>" + value.title +  ' --- '  + value.description + "</span></div>"
       // plot markers on the map
       newMarker = new google.maps.Marker({
         position: thisLatLng,
@@ -93,6 +98,22 @@ $('#ping').on('click', function(){
       }
     });
   }, 3000);
+});
+
+$(".draw-circle").on('click', function() {
+    var center = new google.maps.LatLng(crd.latitude, crd.longitude);
+          var options = {
+            strokeColor: 'red',
+            strokeOpacity: 1.0,
+            strokeWeight: 1,
+            fillColor: 'red',
+            fillOpacity: 0.5,
+            map: map,
+            center: center,
+            radius: obj.max
+        };
+
+        circle = new google.maps.Circle(options);
 });
 
 </script>
