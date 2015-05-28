@@ -19,12 +19,64 @@
   display: none;
 }
 
-#middle-parallax {
-  height: 400px;
+#enjoy, #remember, #learn {
+  min-height: 400px;
+  height: 40vh;
   box-shadow: 0px -1px 30px black;
 }
 
 .page-footer {
   margin-top: 0;
   padding-top: 0;
+}
+
+#side-links {
+  background: rgba(255,255,255,0.5);
+  position: fixed;
+  top: 50%;
+  right: 8%;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  padding-right: 10px;
+}
+
+#side-buttons{
+  background: rgba(255,255,255,0.5);
+  position: fixed;
+  top: 30%;
+  right: 2%;
+}
+
+#dropdown1 {
+  position: fixed;
+  height: 64px;
+}
+
+#map-container {
+  margin-top: 5%;
+}
+
+@media (min-width: 600px) {
+  #ammo, #help, #ping, #show {
+    width: 100%;
+    margin: 2px 0;
+  }
+}
+
+
+
+@media (max-width: 650px) {
+  #enjoy, #remember, #learn {
+    height: 60vh;
+  }
+
+  #enjoy p, #remember p, #learn p {
+    font-size: 0.9em;
+  }
+
+  #ammo, #help, #ping, #show {
+    margin-left: 0.5%;
+    width: 49%;
+    display: inline-block;
+  }
 }

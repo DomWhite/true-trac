@@ -1,49 +1,49 @@
-// var currentPosition;
-// var currentPositionMarker;
+var currentPosition;
+var currentPositionMarker;
 
-// // check if qeolocation is available on this device
-// if ("geolocation" in navigator) {
+// check if qeolocation is available on this device
+if ("geolocation" in navigator) {
 
-//   //function to run each time the current location changes
-//   function success(position) {
+  //function to run each time the current location changes
+  function success(position) {
 
-//     currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-//     // clear old marker (if there is one)
-//     if (currentPositionMarker) {
-//       currentPositionMarker.setMap(null);
-//     }
+    // clear old marker (if there is one)
+    if (currentPositionMarker) {
+      currentPositionMarker.setMap(null);
+    }
 
-//     // plot new marker on the map
-//     currentPositionMarker = new google.maps.Marker({
-//       position: currentPosition,
-//       map: map,
-//       optimized: false,
-//       icon: "<%= asset_path 'blue_sphere.gif' %>",
-//       title: 'My Current Position!'
-//     });
+    // plot new marker on the map
+    currentPositionMarker = new google.maps.Marker({
+      position: currentPosition,
+      map: map,
+      optimized: false,
+      icon: "<%= asset_path 'red-dot.gif' %>",
+      title: 'My Current Position!'
+    });
 
-//     // check if the current position is within a checkpoint
-//     inCheckpoint(currentPosition)
+    // check if the current position is within a checkpoint
+    inCheckpoint(currentPosition)
 
-//     // rezoom the map to fit the current user's location
-//     bounds.extend(currentPosition);
-//     map.fitBounds(bounds);
-//   }
+    // rezoom the map to fit the current user's location
+    bounds.extend(currentPosition);
+    map.fitBounds(bounds);
+  }
 
-//   // function to run if there is an error getting the current location
-//   function error() {
-//     alert("There was an error getting your location.")
-//   }
+  // function to run if there is an error getting the current location
+  function error() {
+    alert("There was an error getting your location.")
+  }
 
-//   // watchPosition options
-//   var options = {
-//     enableHighAccuracy: false
-//   };
+  // watchPosition options
+  var options = {
+    enableHighAccuracy: false
+  };
 
-//   navigator.geolocation.watchPosition(success, error, options);
+  navigator.geolocation.watchPosition(success, error, options);
 
-// } else {  // redirect if geolocation not available
-//   alert("Geolocation is not available on this device. This game will not work :(")
-//     window.location.replace("/")
-// }
+} else {  // redirect if geolocation not available
+  alert("Geolocation is not available on this device. This game will not work :(")
+    window.location.replace("/")
+}
