@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :pages, :users, :markers, :locations
+  resources :pages, :users, :markers, :locations, :ammunitions
   resources :comments, only: [:new, :create]
   get '/chat' => 'comments#new'
 
@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get '/sign_out', to: 'sessions#destroy', as: :sign_out
 
   post '/locations' => 'locations#create'
+
+  get '/api/ammunition' => 'ammunitions#show'
 
   
 
