@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527010241) do
+ActiveRecord::Schema.define(version: 20150527092026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ammunitions", force: :cascade do |t|
+    t.string  "name",  null: false
+    t.integer "range"
+    t.integer "max",   null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       null: false
