@@ -14,21 +14,14 @@ if ("geolocation" in navigator) {
       currentPositionMarker.setMap(null);
     }
 
-    // plot new marker on the map
+    // plot user on the map
     currentPositionMarker = new google.maps.Marker({
       position: currentPosition,
       map: map,
       optimized: false,
       icon: "<%= asset_path 'red-dot.gif' %>",
-      title: 'My Current Position!'
+      title: 'Me'
     });
-
-    // check if the current position is within a checkpoint
-    inCheckpoint(currentPosition)
-
-    // rezoom the map to fit the current user's location
-    bounds.extend(currentPosition);
-    map.fitBounds(bounds);
   }
 
   // function to run if there is an error getting the current location
@@ -44,6 +37,6 @@ if ("geolocation" in navigator) {
   navigator.geolocation.watchPosition(success, error, options);
 
 } else {  // redirect if geolocation not available
-  alert("Geolocation is not available on this device. This game will not work :(")
+  alert("Geolocation is not available on this device")
     window.location.replace("/")
 }
