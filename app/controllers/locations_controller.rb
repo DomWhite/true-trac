@@ -22,9 +22,6 @@ class LocationsController < ApplicationController
     end 
 
     render :json => arr.to_json
-
-    # location = Location.all
-    # render :json => location.to_json
   end  
 
   def location_params

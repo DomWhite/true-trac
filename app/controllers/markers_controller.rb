@@ -39,6 +39,10 @@ class MarkersController < ApplicationController
     end
   end
 
+  def badge_url(user_id)
+    @badge = Marker.find(user_id).category.badge_url 
+  end
+
 
   def marker_params
     params.require(:marker).permit(:title, :image_url, :lat, :lng, :description, :photo, :category_id, :user_id)
