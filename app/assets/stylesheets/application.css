@@ -79,6 +79,9 @@ h4 {
   max-width: 600px;
 }
 
+.dropdown-content {
+  overflow-y: visible; 
+}
 
 
 @media (max-width: 650px) {
