@@ -83,6 +83,10 @@ h4 {
   overflow-y: visible; 
 }
 
+li#facebook-list.waves-effect {
+  overflow: visible;
+  }
+
 
 @media (max-width: 650px) {
   #enjoy, #remember, #learn {
