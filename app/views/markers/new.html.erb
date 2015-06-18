@@ -1,8 +1,5 @@
 <div class="container" id="map-container">
-  <!-- <a id="ping" class="waves-effect waves-light btn">PING LOCATION<i class="mdi-maps-my-location"></i></a> -->
-  <!-- Dropdown Trigger -->
-  <!--   <a class='dropdown-button btn' href='#' data-activates='dropdown2'>AMMUNITION</a> -->
-  <!-- Dropdown Structure -->
+
   <ul id='dropdown2' class='dropdown-content'>
     <!-- Populated with ammunition dynamically -->
   </ul>
@@ -18,7 +15,7 @@
         <a id="ping" class="waves-effect waves-light btn z-depth-1">PING<i class="mdi-maps-my-location"></i></a><!---->
         
         <!-- Dropdown Trigger -->
-        <a id="ammo" class='dropdown-button btn' href='#' data-activates='dropdown2'>AMMUNITION</a>
+        <a id="ammo" class='dropdown-button btn' href='#' data-activates='dropdown2'>SHOT RADIUS</a>
       </div>
       <!-- Modal Structure -->
       <div id="modalhelp" class="modal teal-text">
@@ -35,6 +32,8 @@
     <%= render 'form' %>
   </div>
 </div>
+
+
 <script>
 var options = {
       enableHighAccuracy: true,
@@ -71,9 +70,8 @@ var options = {
                   position: thisLatLng,
                   optimized: true,
                   map: map,
-                  title: value.title
-                  // id: index,
-                  // icon: "<%= badge_url(index) %>"
+                  title: value.title,
+                  id: index
               });
               var infowindow = new google.maps.InfoWindow({
                   content: contentString
@@ -90,6 +88,8 @@ var options = {
   };
   navigator.geolocation.getCurrentPosition(success, error, options);
 
+
+/*************** Draw MAP on canvas *****************/
   function initialize() {
       var mapOptions = {
           zoom: 8,
@@ -99,6 +99,8 @@ var options = {
       map = new google.maps.Map(document.getElementById('map-canvas'),
           mapOptions);
   }
+
+
   $('#ping').on('click', function() {
       Materialize.toast('PINGED!', 4000);
       coOrd = navigator.geolocation.getCurrentPosition(pingSuccess);
