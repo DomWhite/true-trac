@@ -35,9 +35,10 @@
 
 
 <script>
+
 var options = {
       enableHighAccuracy: true,
-      timeout: 5000,
+      timeout: 2000,
       maximumAge: 0
   };
   var crd;
@@ -116,12 +117,13 @@ var options = {
           });
       }, 3000);
   });
+
+    // obtain Pinged location markers
   $('#show').on('click', function() {
       $.ajax({
           url: "/api/locations",
           method: "get"
       }).done(function(data) {
-          // creates a new circle for each checkpoint
           $.each(data, function(index, value) {
               var thisLatLng = new google.maps.LatLng(value.lat, value.lng);
               // plot all users last pinged position on map on the map
@@ -136,6 +138,8 @@ var options = {
           });
       });
   });
+
+  /* Shot radius circle */
   $(".draw-circle").on('click', function() {
       var center = new google.maps.LatLng(crd.latitude, crd.longitude);
       var options = {
