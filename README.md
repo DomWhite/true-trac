@@ -41,7 +41,7 @@ Stopped all feature implementation to concentrate on design and layout using Pho
 Polish and present to class
 
 ###### Future  
-Clean up code (damn you turbolinks!)  
+Clean up code  
 Add user account page  
 Add CRUD for drop pins specific to each user  
 Have drop pin icon change depending on category of activity  
