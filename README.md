@@ -20,33 +20,33 @@ ________________________________________________________________________________
 
 ### Timeline
 
-Day 1  
+###### Day 1  
 Application set up (ROR), wire frames and research of technology requirements.  
 Work out MVP  
 Suss out OmniAuth.  
 
-Day 2  
+###### Day 2  
 Design and creation of models and model relationships based on MVP. Seed database.  
 Set up of controllers and views.  
 Added basic chat room.
 
-Day 3  
+###### Day 3  
 Construction of custom api routes to utilise AJAX calls for the drop pins and location pinging.
 Concentrated on JS for front-end functionality (mainly for the Map page) and played around with new features.
 
-Day 4  
+###### Day 4  
 Stopped all feature implementation to concentrate on design and layout using Photoshop and CSS.
 
-Day 5  
+###### Day 5  
 Polish and present to class
 
-Future  
+###### Future  
 Clean up code (damn you turbolinks!)  
 Add user account page  
 Add CRUD for drop pins specific to each user  
 Have drop pin icon change depending on category of activity  
 
-Far Future  
+###### Far Future  
 Segmented chat rooms based on topic (hiking, camping, etc)  
 Port to mobile
 
