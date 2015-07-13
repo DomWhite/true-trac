@@ -22,7 +22,9 @@ Rails.application.routes.draw do
 
   get '/api/locations' => 'locations#show'
 
-  
+
+  get '/options' => 'markers#users_markers_edit'
+
 
 
 end
