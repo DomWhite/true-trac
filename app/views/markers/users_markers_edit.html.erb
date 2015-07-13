@@ -1,0 +1,16 @@
+
+<div class="nav-wrapper">
+  <ul>
+  <% @user_markers.each do |marker| %>
+    <li> <%= marker.title %>
+
+       <%= link_to 'Edit', edit_marker_path(marker)%> 
+
+    <%= form_for marker, :method => :delete do |f| %>
+      <%= f.submit 'delete', :class => 'red accent-4 btn' %>
+    <% end %> 
+
+    </li>
+  <% end %>
+  </ul>
+</div>

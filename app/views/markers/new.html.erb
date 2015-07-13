@@ -37,9 +37,9 @@
 <script>
 
 var options = {
-      enableHighAccuracy: true,
-      timeout: 2000,
-      maximumAge: 0
+      enableHighAccuracy: false,
+      timeout: 2000, //required when set to true
+      maximumAge: 0 
   };
   var crd;
   var map;
@@ -101,7 +101,7 @@ var options = {
           mapOptions);
   }
 
-
+  // clicking Ping button post location to DB after 
   $('#ping').on('click', function() {
       Materialize.toast('PINGED!', 4000);
       coOrd = navigator.geolocation.getCurrentPosition(pingSuccess);

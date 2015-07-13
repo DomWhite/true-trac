@@ -39,8 +39,13 @@ class MarkersController < ApplicationController
     end
   end
 
+  def users_markers_edit
+    markers = Marker.all
+    @user_markers = markers.where(user_id: current_user)
+  end
+
   def badge_url(user_id)
-    @badge = Marker.find(user_id).category.badge_url 
+    @badge = Marker.find(user_id).category.badge_url
   end
 
 
