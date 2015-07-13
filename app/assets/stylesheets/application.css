@@ -87,6 +87,14 @@ li#facebook-list.waves-effect {
   overflow: visible;
   }
 
+#options-btn {
+  width: 120px;
+}
+
+#signout-btn {
+  width: 125px;
+}
+
 
 @media (max-width: 650px) {
   #enjoy, #remember, #learn {

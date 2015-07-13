@@ -1,3 +1,5 @@
+// Testing for shot range/radius
+
 function setRange() {
     $.ajax({
       url: "/api/ammunition",
@@ -15,6 +17,7 @@ $(function(){
   setRange();
 })
 
+// example ammo ranges
 var ammo = {
   sg12: 150,
   r22: 300,
@@ -22,6 +25,7 @@ var ammo = {
   bmg50:3000
 }
 
+// draws circle using radius based on shot range
 function drawCircle(ammo) {
       var center = new google.maps.LatLng(crd.latitude, crd.longitude);
           var options = {
