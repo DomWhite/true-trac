@@ -9,7 +9,7 @@
       <!--     <div class="col l1">
         <a class="waves-effect waves-light btn modal-trigger" href="#modalhelp">HELP</a>
       </div>  -->
-      <div class="col s12 m3 l2 z-depth-1" id="side-buttons">
+      <div class="col l2 hide-on-med-and-down z-depth-1" id="side-buttons">
         <a id="help" class="waves-effect waves-light btn modal-trigger z-depth-1" href="#modalhelp">HELP</a><!---->
         <a id="show" class="waves-effect waves-light btn z-depth-1">SHOW OTHERS</a><!---->
         <a id="ping" class="waves-effect waves-light btn z-depth-1">PING<i class="mdi-maps-my-location"></i></a><!---->
@@ -35,61 +35,6 @@
 
 
 <script>
-
-var options = {
-      enableHighAccuracy: false,
-      timeout: 2000, //required when set to true
-      maximumAge: 0 
-  };
-  var crd;
-  var map;
-  var ping;
-
-  function pingSuccess(pos) {
-      ping = pos.coords;
-      return ping;
-  }
-
-  function success(pos) {
-      crd = pos.coords;
-      console.log('Latitude : ' + crd.latitude);
-      console.log('Longitude: ' + crd.longitude);
-      initialize();
-      google.maps.event.addListener(map, 'click', function(event) {
-          document.getElementById('lat').value = event.latLng.lat();
-          document.getElementById('lng').value = event.latLng.lng();
-      });
-      $.ajax({
-          url: "/api/markers",
-          method: "get"
-      }).done(function(data) {
-          $.each(data, function(index, value) {
-              var thisLatLng = new google.maps.LatLng(value.lat, value.lng);
-              var contentString = "<div class='card-panel blue darken-1'><span class='white-text text-darken-2'>" + value.title + ' --- ' + value.description + "</span></div>"
-                  // plot markers on the map
-              newMarker = new google.maps.Marker({
-                  position: thisLatLng,
-                  optimized: true,
-                  map: map,
-                  title: value.title,
-                  id: index
-              });
-              var infowindow = new google.maps.InfoWindow({
-                  content: contentString
-              });
-              google.maps.event.addListener(newMarker, 'click', function() {
-                  infowindow.open(map, this);
-              });
-          });
-      });
-  };
-
-  function error(err) {
-      console.warn('ERROR(' + err.code + '): ' + err.message);
-  };
-  navigator.geolocation.getCurrentPosition(success, error, options);
-
-
 /*************** Draw MAP on canvas *****************/
   function initialize() {
       var mapOptions = {
@@ -100,60 +45,6 @@ var options = {
       map = new google.maps.Map(document.getElementById('map-canvas'),
           mapOptions);
   }
-
-  // clicking Ping button post location to DB after 
-  $('#ping').on('click', function() {
-      Materialize.toast('PINGED!', 4000);
-      coOrd = navigator.geolocation.getCurrentPosition(pingSuccess);
-      setTimeout(function() {
-          $.ajax({
-              url: "/locations",
-              type: "post",
-              dataType: 'json',
-              data: {
-                  lat: ping.latitude,
-                  lng: ping.longitude
-              }
-          });
-      }, 3000);
-  });
-
-    // obtain Pinged location markers
-  $('#show').on('click', function() {
-      $.ajax({
-          url: "/api/locations",
-          method: "get"
-      }).done(function(data) {
-          $.each(data, function(index, value) {
-              var thisLatLng = new google.maps.LatLng(value.lat, value.lng);
-              // plot all users last pinged position on map on the map
-              newCheckpointMarker = new google.maps.Marker({
-                  position: thisLatLng,
-                  optimized: false,
-                  icon: "<%= asset_path 'blue-marker.gif' %>",
-                  map: map,
-                  title: "person",
-                  id: index
-              });
-          });
-      });
-  });
-
-  /* Shot radius circle */
-  $(".draw-circle").on('click', function() {
-      var center = new google.maps.LatLng(crd.latitude, crd.longitude);
-      var options = {
-          strokeColor: 'red',
-          strokeOpacity: 1.0,
-          strokeWeight: 1,
-          fillColor: 'red',
-          fillOpacity: 0.5,
-          map: map,
-          center: center,
-          radius: obj.max
-      };
-      circle = new google.maps.Circle(options);
-  });
 </script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key="></script>

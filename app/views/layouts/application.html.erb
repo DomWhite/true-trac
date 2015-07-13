@@ -33,13 +33,20 @@
       </ul>
       <ul class="side-nav teal" id="mobile-demo">
       <div class= "row">
+        <% if @markers_new_view %>
+          <!-- <li class="waves-effect col s12"></li> -->
+          <li><a id="" class="waves-effect waves-light modal-trigger" href="#modalhelp">HELP</a></li>
+          <li><a id="" class="waves-effect waves-light">SHOW OTHERS</a></li>
+          <li><a id="" class="waves-effect waves-light">PING<i class="mdi-maps-my-location"></i></a></li>
+          <li><a id="" class='dropdown-button' href='#' data-activates='dropdown2'>SHOT RADIUS</a></li>
+        <% end %> 
         <% if !logged_in? %>
           <p class= "teal-text white col s12">Sign in with:</p>
           <li class="waves-effect col s6"><%= link_to 'Twitter', '/auth/twitter', class:"white-text"  %></li>
           <li class="waves-effect col s6"><%= link_to 'Facebook', '/auth/facebook', class:"white-text"  %></li>
         <% else %> 
-          <li class="waves-effect col s12"><%= link_to 'EXPLORE', '/map', class:"white-text" %></li>
-          <li class="waves-effect col s12"><%= link_to 'CHAT', '/chat', class:"white-text"  %></li>
+          <li class="waves-effect col s12"><%= link_to 'MAP', '/map', class:"white-text" %></li>
+          <li class="waves-effect col s12"><%= link_to 'CHAT', '/chat', class:"white-text" %></li>
           <li class="waves-effect col s12"><%= link_to 'OPTIONS', '/options', class:"white-text" %></li>
           <li class="waves-effect col s12"><%= link_to 'SIGN OUT', sign_out_path, class:"white-text" %></li>
         <% end %> 
