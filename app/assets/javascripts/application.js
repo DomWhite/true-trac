@@ -18,4 +18,6 @@
 //= require comments
 //= require initialise
 //= require geoloc
+//= require markers
+//= require range
 //= require_tree .

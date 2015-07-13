@@ -1,0 +1,92 @@
+    // clear old marker (if there is one)
+    if (currentPositionMarker) {
+      currentPositionMarker.setMap(null);
+    }
+
+function setRange() {
+    $.ajax({
+      url: "/api/ammunition",
+      method: "get"
+    }).done(function(data) {
+      $.each(data, function(index, obj) {
+        console.log(index);
+        console.log(obj);
+        $("#dropdown2").append("<li><a class='draw-circle' href='#'>" + obj.name + "</a></li>");
+        var tempAmmoName = obj.name;
+        ammo[tempAmmoName] = obj.range;
+      })
+    });
+}
+
+// draws circle using radius based on shot range
+function drawCircle(range) {
+      var center = new google.maps.LatLng(crd.latitude, crd.longitude);
+          var options = {
+            strokeColor: 'red',
+            strokeOpacity: 1.0,
+            strokeWeight: 1,
+            fillColor: 'red',
+            fillOpacity: 0.5,
+            map: map,
+            center: center,
+            radius: range
+        };
+        circle = new google.maps.Circle(options);
+} 
+
+// ammunition variables
+var ammo = {};
+var range;
+var circle;
+
+$(function(){
+  setRange();
+  $('#dropdown2').on('click', '.draw-circle', function() {
+    console.log(ammo[this.innerHTML]);
+    range = ammo[this.innerHTML];
+    if (circle) {
+      circle.setMap(null);
+    }
+    drawCircle(range);
+  });
+})
+
+$(function(){
+  // clicking Ping button post location to DB after 
+  $('#ping').on('click', function() {
+      Materialize.toast('PINGED!', 4000);
+      coOrd = navigator.geolocation.getCurrentPosition(pingSuccess);
+      setTimeout(function() {
+          $.ajax({
+              url: "/locations",
+              type: "post",
+              dataType: 'json',
+              data: {
+                  lat: ping.latitude,
+                  lng: ping.longitude
+              }
+          });
+      }, 3000);
+  });
+
+    // obtain Pinged location markers
+  $('#show').on('click', function() {
+      $.ajax({
+          url: "/api/locations",
+          method: "get"
+      }).done(function(data) {
+          $.each(data, function(index, value) {
+              var thisLatLng = new google.maps.LatLng(value.lat, value.lng);
+              // plot all users last pinged position on map on the map
+              newCheckpointMarker = new google.maps.Marker({
+                  position: thisLatLng,
+                  optimized: false,
+                  icon: "<%= asset_path 'blue-marker.gif' %>",
+                  map: map,
+                  title: "person",
+                  id: index
+              });
+          });
+      });
+  });
+})

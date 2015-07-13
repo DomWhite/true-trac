@@ -1,0 +1,52 @@
+var options = {
+      enableHighAccuracy: false,
+      //timeout: 2000,
+      maximumAge: 0 
+  };
+  var crd;
+  var map;
+  var ping;
+
+  function pingSuccess(pos) {
+      ping = pos.coords;
+      return ping;
+  }
+
+  function success(pos) {
+      crd = pos.coords;
+      console.log('Latitude : ' + crd.latitude);
+      console.log('Longitude: ' + crd.longitude);
+      initialize();
+      google.maps.event.addListener(map, 'click', function(event) {
+          document.getElementById('lat').value = event.latLng.lat();
+          document.getElementById('lng').value = event.latLng.lng();
+      });
+      $.ajax({
+          url: "/api/markers",
+          method: "get"
+      }).done(function(data) {
+          $.each(data, function(index, value) {
+              var thisLatLng = new google.maps.LatLng(value.lat, value.lng);
+              var contentString = "<div class='card-panel blue darken-1'><span class='white-text text-darken-2'>" + value.title + ' --- ' + value.description + "</span></div>"
+                  // plot markers on the map
+              newMarker = new google.maps.Marker({
+                  position: thisLatLng,
+                  optimized: true,
+                  map: map,
+                  title: value.title,
+                  id: index
+              });
+              var infowindow = new google.maps.InfoWindow({
+                  content: contentString
+              });
+              google.maps.event.addListener(newMarker, 'click', function() {
+                  infowindow.open(map, this);
+              });
+          });
+      });
+  };
+
+  function error(err) {
+      console.warn('ERROR(' + err.code + '): ' + err.message);
+  };
+  navigator.geolocation.getCurrentPosition(success, error, options);
