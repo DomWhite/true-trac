@@ -9,6 +9,7 @@ class MarkersController < ApplicationController
       redirect_to '/'
     else
       @marker = Marker.new
+      @markers_new_view = true #to check if we're on this view
     end
   end
 
@@ -37,6 +38,12 @@ class MarkersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @marker = Marker.find(params[:id])
+    @marker.destroy
+    redirect_to '/options'
   end
 
   def users_markers_edit

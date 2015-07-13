@@ -25,6 +25,4 @@ Rails.application.routes.draw do
 
   get '/options' => 'markers#users_markers_edit'
 
-
-
 end
