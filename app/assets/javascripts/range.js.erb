@@ -34,6 +34,13 @@ var ammo = {};
 var range;
 var circle;
 
+//pinging
+var ping;
+function pingSuccess(pos) {
+    ping = pos.coords;
+    return ping;
+}
+
 $(function(){
   setRange(); //call setRange on load
   $('#dropdown2').on('click', '.draw-circle', function() {

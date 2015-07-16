@@ -3,21 +3,16 @@ var options = {
       //timeout: 2000,
       maximumAge: 0 
   };
-  var crd;
+  // var crd;
   var map;
-  var ping;
   var badges = {};
 
-  function pingSuccess(pos) {
-      ping = pos.coords;
-      return ping;
-  }
-
-  function success(pos) {
+  function getSuccess(pos) {
       crd = pos.coords;
       console.log('Latitude : ' + crd.latitude);
       console.log('Longitude: ' + crd.longitude);
       initialize();
+      //for adding lat/lng to form on click
       google.maps.event.addListener(map, 'click', function(event) {
           document.getElementById('lat').value = event.latLng.lat();
           document.getElementById('lng').value = event.latLng.lng();
@@ -51,13 +46,14 @@ var options = {
       });
   };
 
-  function error(err) {
+  function getError(err) {
       console.warn('ERROR(' + err.code + '): ' + err.message);
   };
-  navigator.geolocation.getCurrentPosition(success, error, options);
+  navigator.geolocation.getCurrentPosition(getSuccess, getError, watchOptions);
 
-  // Category badge images
   $(function(){
+
+   // Category badge images
     $.ajax({
             url: "/api/categories",
             method: "get"

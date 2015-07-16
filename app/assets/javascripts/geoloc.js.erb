@@ -5,7 +5,7 @@ var currentPositionMarker;
 if ("geolocation" in navigator) {
 
   //function to run each time the current location changes
-  function success(position) {
+  function watchSuccess(position) {
 
     currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
@@ -26,18 +26,22 @@ if ("geolocation" in navigator) {
   }
 
   // function to run if there is an error getting the current location
-  function error() {
+  function watchError() {
     alert("There was an error getting your location.")
   }
 
   // watchPosition options
-  var options = {
+  var watchOptions = {
     enableHighAccuracy: false
   };
 
-  navigator.geolocation.watchPosition(success, error, options);
+  navigator.geolocation.watchPosition(watchSuccess, watchError, watchOptions);
 
 } else {  // redirect if geolocation not available
   alert("Geolocation is not available on this device")
     window.location.replace("/")
 }
+
+//   $.when( navigator.geolocation.watchPosition(success, error, options); ).done(function() {
+//        initialize();
+// });
