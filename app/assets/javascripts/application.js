@@ -17,7 +17,7 @@
 //= require faye
 //= require comments
 //= require initialise
-//= require geoloc
 //= require markers
 //= require range
+//= require geoloc
 //= require_tree .
