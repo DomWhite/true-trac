@@ -19,7 +19,8 @@ if ("geolocation" in navigator) {
       position: currentPosition,
       map: map,
       optimized: false,
-      icon: "<%= asset_path 'red-dot.gif' %>",
+      animation: google.maps.Animation.BOUNCE,
+      // icon: "<%= asset_path 'red-dot.gif' %>",
       title: 'Me'
     });
   }

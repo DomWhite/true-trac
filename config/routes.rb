@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   get '/map' => 'markers#new'
 
-  get '/api/markers' => 'markers#show'
+  get '/options' => 'markers#users_markers_edit'
 
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/failure', to: 'sessions#auth_fail'
@@ -18,11 +18,15 @@ Rails.application.routes.draw do
 
   post '/locations' => 'locations#create'
 
+  #api routes
+
+  get '/api/markers' => 'markers#show'
+
+  get '/api/categories' => 'categories#show'
+
   get '/api/ammunition' => 'ammunitions#show'
 
   get '/api/locations' => 'locations#show'
 
-
-  get '/options' => 'markers#users_markers_edit'
 
 end

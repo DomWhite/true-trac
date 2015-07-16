@@ -6,6 +6,7 @@ var options = {
   var crd;
   var map;
   var ping;
+  var badges = {};
 
   function pingSuccess(pos) {
       ping = pos.coords;
@@ -21,6 +22,7 @@ var options = {
           document.getElementById('lat').value = event.latLng.lat();
           document.getElementById('lng').value = event.latLng.lng();
       });
+
       $.ajax({
           url: "/api/markers",
           method: "get"
@@ -29,11 +31,14 @@ var options = {
               var thisLatLng = new google.maps.LatLng(value.lat, value.lng);
               var contentString = "<div class='card-panel blue darken-1'><span class='white-text text-darken-2'>" + value.title + ' --- ' + value.description + "</span></div>"
                   // plot markers on the map
+                  // console.log(value.category_id);
+                  // console.log(badges[value.category_id]);
               newMarker = new google.maps.Marker({
                   position: thisLatLng,
                   optimized: true,
                   map: map,
                   title: value.title,
+                  icon: badges[value.category_id],
                   id: index
               });
               var infowindow = new google.maps.InfoWindow({
@@ -50,3 +55,18 @@ var options = {
       console.warn('ERROR(' + err.code + '): ' + err.message);
   };
   navigator.geolocation.getCurrentPosition(success, error, options);
+
+  // Category badge images
+  $(function(){
+    $.ajax({
+            url: "/api/categories",
+            method: "get"
+        }).done(function(data) {
+          // console.log(data);
+            $.each(data, function(index, obj) {
+              // console.log(obj.id);
+              // console.log(obj.badge_url);
+              badges[obj.id] = obj.badge_url;
+        });
+    });
+  });
