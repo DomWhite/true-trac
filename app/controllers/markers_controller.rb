@@ -34,7 +34,7 @@ class MarkersController < ApplicationController
   def update
     marker = Marker.find(params[:id])
     if marker.update(marker_params)
-      redirect_to '/'
+      redirect_to '/map'
     else
       render :edit
     end
